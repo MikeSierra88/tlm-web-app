@@ -8,10 +8,13 @@ const redirectRouter = require('./redirects'),
       music2021Router = require('./2021'),
       songRouter = require('./songs');
 
+// data
+const eventsJson = require('../data/events.json');
+
 // index routes
 router.get('/', (req, res) => {
     res.set('Link', '<https://tylerlevs.com>; rel="canonical"');
-    res.render('index', { id: 'main', title: "Tyler Levs Music", scriptIds: ['main'] });
+    res.render('index', { id: 'main', title: "Tyler Levs Music", scriptIds: ['main'], events: eventsJson });
 });
 
 // BDAY TEMPORARY

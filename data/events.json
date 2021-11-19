@@ -1,0 +1,32 @@
+[
+    {
+        "date": "2021-12-18T23:00:00.000Z",
+        "name": "Some event somewhere",
+        "venue": "Some venue name",
+        "town": "Somewhere, NH"
+    },
+    {
+        "date": "2022-01-12T23:00:00.000Z",
+        "name": "Some event somewhere",
+        "venue": "Some venue name",
+        "town": "Somewhere, NH"
+    },
+    {
+        "date": "2022-01-12T23:00:00.000Z",
+        "name": "Some event somewhere",
+        "venue": "Some venue name",
+        "town": "Somewhere, NH"
+    },
+    {
+        "date": "2022-01-12T23:00:00.000Z",
+        "name": "Some event somewhere",
+        "venue": "Some venue name",
+        "town": "Somewhere, NH"
+    },
+    {
+        "date": "2022-01-12T23:00:00.000Z",
+        "name": "Some event somewhere",
+        "venue": "Some venue name",
+        "town": "Somewhere, NH"
+    }
+]
