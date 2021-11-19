@@ -1,6 +1,6 @@
 {
   "name": "tylerlevsmusic",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "TylerLevsMusic web app",
   "author": "Gabor Meszaros <reklam11@gmail.com>",
   "repository" : {"type": "git", "url": "git://github.com/MikeSierra88/tlm-web-app.git"},
