@@ -34,21 +34,21 @@
                                 </p>
                             <% } %>
                             <% if (release.category === "song" || release.category === "albums") { %>
-                            <div class="d-flex justify-content-around align-items-center flex-wrap">
-                                <a class="btn btn-sm btn-primary mx-1 mb-3 mb-lg-0" href="<%=release.links.spotify%>" target="_blank">Spotify</a><br class="d-lg-none" />
-                                <a class="btn btn-sm btn-primary mx=1 mb-3 mb-lg-0" href="<%=release.links.amazon%>" target="_blank">Amazon Music</a><br class="d-lg-none" />
-                                <a class="btn btn-sm btn-primary mx-1 mb-3 mb-lg-0" href="<%=release.links.apple%>" target="_blank">Apple Music</a>
+                            <div class="d-flex flex-column flex-lg-row justify-content-around align-items-center flex-wrap">
+                                <a class="streaming-link-btn btn btn-sm btn-primary" href="<%=release.links.spotify%>" target="_blank">Spotify</a><br class="d-lg-none" />
+                                <a class="streaming-link-btn btn btn-sm btn-primary" href="<%=release.links.amazon%>" target="_blank">Amazon Music</a><br class="d-lg-none" />
+                                <a class="streaming-link-btn btn btn-sm btn-primary" href="<%=release.links.apple%>" target="_blank">Apple Music</a>
                             </div>
                             <% } else if (release.category === "collections") { %>
-                                <hr class="divider my-4" />
+                                
                                 <% release.linksArray.forEach(link => { %>
-                                    <p class="card-text"><strong><%= link.title %></strong></p>
-                                    <div class="d-flex justify-content-around align-items-center flex-wrap">
-                                        <a class="btn btn-sm btn-primary mx-1 mb-3 mb-lg-0" href="<%=link.spotify%>" target="_blank">Spotify</a><br class="d-lg-none" />
-                                        <a class="btn btn-sm btn-primary mx=1 mb-3 mb-lg-0" href="<%=link.amazon%>" target="_blank">Amazon Music</a><br class="d-lg-none" />
-                                        <a class="btn btn-sm btn-primary mx-1 mb-3 mb-lg-0" href="<%=link.apple%>" target="_blank">Apple Music</a>
-                                    </div>
                                     <hr class="divider my-4" />
+                                    <p class="card-text"><strong><%= link.title %></strong></p>
+                                    <div class="d-flex flex-column flex-lg-row justify-content-around align-items-center flex-wrap">
+                                        <a class="streaming-link-btn btn btn-sm btn-primary" href="<%=link.spotify%>" target="_blank">Spotify</a><br class="d-lg-none" />
+                                        <a class="streaming-link-btn btn btn-sm btn-primary" href="<%=link.amazon%>" target="_blank">Amazon Music</a><br class="d-lg-none" />
+                                        <a class="streaming-link-btn btn btn-sm btn-primary" href="<%=link.apple%>" target="_blank">Apple Music</a>
+                                    </div>
                                 <% }) %>
                             <% } %>
                             <% if (release.orderEnabled) { %>
@@ -87,15 +87,15 @@
                 <% } %>
             </div>
             <% if (index === 2 && releases.length > 3) { %>
-            <div class="d-flex justify-content-center align-items-center mt-3">
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReleases" aria-expanded="false" aria-controls="collapseReleases">
-                    See more releases
-                </button>
-            </div>
             <div class="collapse" id="collapseReleases">
             <% } %>
         <% }) %>
         <% if (releases.length > 3) { %>
+        </div>
+        <hr class="divider my-4" />
+        <div class="d-flex justify-content-center align-items-center mt-3">
+            <button class="collapse-btn btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseReleases" aria-expanded="false" aria-controls="collapseReleases">
+            </button>
         </div>
         <% } %>
     </div>
