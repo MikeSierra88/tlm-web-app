@@ -29,8 +29,7 @@
                     <h5 class="text-center">
                       <%= index+1 %>.
                       <% if (track.youtubeLink) { %>
-                      <a href="<%=track.youtubeLink%>"
-                          target="_blank">
+                      <a href="<%=track.youtubeLink%>" target="_blank" rel="noopener noreferrer">
                           <%= track.title %>
                       </a>
                       <% } else { %>
