@@ -11,8 +11,6 @@ export class PermissionsGuard implements CanActivate {
 
     const userPermissions = context.getArgs()[0].user.permissions;
 
-    console.log(userPermissions);
-
     if (!routePermissions) {
       return true;
     }
