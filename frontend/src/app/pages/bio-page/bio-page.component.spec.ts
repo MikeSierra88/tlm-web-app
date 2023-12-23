@@ -8,7 +8,7 @@ describe('BioPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BioPageComponent]
+      declarations: [BioPageComponent],
     });
     fixture = TestBed.createComponent(BioPageComponent);
     component = fixture.componentInstance;
