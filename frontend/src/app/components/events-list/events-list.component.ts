@@ -25,14 +25,17 @@ export class EventsListComponent implements OnInit, OnDestroy {
   futureEvents: ExistingScheduledEvent[] = [];
   numberOfEventsToShow = 0;
   eventsToShow: BehaviorSubject<ExistingScheduledEvent[]> = new BehaviorSubject(
-    this.futureEvents.slice(0, this.numberOfEventsToShow)
+    this.futureEvents.slice(0, this.numberOfEventsToShow),
   );
 
   areEventsFetched: Observable<boolean> = this.store.select(selectEventsFetched);
 
   subscriptions = new Subscription();
 
-  constructor(private readonly eventsService: EventsService, private readonly store: Store) {
+  constructor(
+    private readonly eventsService: EventsService,
+    private readonly store: Store,
+  ) {
     this.subscriptions.add(
       this.store
         .select(selectFutureEvents)
@@ -44,9 +47,9 @@ export class EventsListComponent implements OnInit, OnDestroy {
                 ? this.futureEvents.length
                 : this.DEFAULT_EVENTS_TO_SHOW;
             this.refreshEvents(this.numberOfEventsToShow);
-          })
+          }),
         )
-        .subscribe()
+        .subscribe(),
     );
   }
 
@@ -56,7 +59,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
         if (!areEventsFetched) {
           this.store.dispatch(fetchEvents());
         }
-      })
+      }),
     );
   }
 
@@ -75,7 +78,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
   private refreshEvents(numberToShow: number) {
     this.numberOfEventsToShow = numberToShow;
     this.eventsToShow.next(
-      this.futureEvents.sort(EventsService.sortEventsByDateDescending).slice(0, this.numberOfEventsToShow)
+      this.futureEvents.sort(EventsService.sortEventsByDateDescending).slice(0, this.numberOfEventsToShow),
     );
   }
 }

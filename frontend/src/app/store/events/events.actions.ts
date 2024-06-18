@@ -10,5 +10,5 @@ export const fetchEvents = createAction(EventsActionTypes.FETCH_EVENTS);
 
 export const fetchEventsCompleted = createAction(
   EventsActionTypes.FETCH_EVENTS_COMPLETED,
-  props<{ events: ExistingScheduledEvent[] }>()
+  props<{ events: ExistingScheduledEvent[] }>(),
 );

@@ -21,7 +21,7 @@ const eventsReducerInternal = createReducer(
       events: events,
       eventsFetched: true,
     };
-  })
+  }),
 );
 
 export function eventsReducer(state: EventsState | undefined, action: Action): EventsState {
