@@ -2,12 +2,16 @@ import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 import { ExistingScheduledEvent } from '../../core/models/scheduled-event.model';
 import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
-import { selectEventsFetched, selectFutureEvents } from '../../store/events/events.selectors';
+import {
+  selectEventsFetched,
+  selectFutureEvents,
+  selectShowEventsInBrowserTimezone,
+} from '../../store/events/events.selectors';
 import { EventsService } from '../../services/events.service';
 import { Store } from '@ngrx/store';
-import { fetchEvents } from '../../store/events/events.actions';
+import { fetchEvents, setShowEventsInBrowserTimezone } from '../../store/events/events.actions';
 import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronRight, faCog, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-events-list',
@@ -20,6 +24,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
   DEFAULT_EVENTS_TO_SHOW = 3;
 
   faEnvelope: IconDefinition = faEnvelope;
+  faCog: IconDefinition = faCog;
 
   @ViewChild('collapse', { static: true }) collapse: NgbCollapse | undefined;
   futureEvents: ExistingScheduledEvent[] = [];
@@ -27,6 +32,9 @@ export class EventsListComponent implements OnInit, OnDestroy {
   eventsToShow: BehaviorSubject<ExistingScheduledEvent[]> = new BehaviorSubject(
     this.futureEvents.slice(0, this.numberOfEventsToShow),
   );
+
+  isSettingsCollapsed = true;
+  showEventsInBrowserTimezone: boolean = false;
 
   areEventsFetched: Observable<boolean> = this.store.select(selectEventsFetched);
 
@@ -61,6 +69,11 @@ export class EventsListComponent implements OnInit, OnDestroy {
         }
       }),
     );
+    this.subscriptions.add(
+      this.store.select(selectShowEventsInBrowserTimezone).subscribe((showEventsInBrowserTimezone) => {
+        this.showEventsInBrowserTimezone = showEventsInBrowserTimezone;
+      }),
+    );
   }
 
   ngOnDestroy() {
@@ -75,10 +88,17 @@ export class EventsListComponent implements OnInit, OnDestroy {
     this.refreshEvents(this.DEFAULT_EVENTS_TO_SHOW);
   }
 
+  changeShowEventsInBrowserTimezone(showInBrowserTimezone: boolean) {
+    this.store.dispatch(setShowEventsInBrowserTimezone({ showEventsInBrowserTimezone: showInBrowserTimezone }));
+  }
+
   private refreshEvents(numberToShow: number) {
     this.numberOfEventsToShow = numberToShow;
     this.eventsToShow.next(
       this.futureEvents.sort(EventsService.sortEventsByDateDescending).slice(0, this.numberOfEventsToShow),
     );
   }
+
+  protected readonly faChevronRight = faChevronRight;
+  protected readonly faChevronDown = faChevronDown;
 }
