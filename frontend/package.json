@@ -41,7 +41,8 @@
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
     "ngx-turnstile": "^0.2.2",
-    "rxjs": "~7.8.1"
+    "rxjs": "~7.8.1",
+    "zone.js": "^0.14.7"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.1.4",
