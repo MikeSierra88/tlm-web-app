@@ -34,6 +34,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
   );
 
   isSettingsCollapsed = true;
+  $showEventsInBrowserTimezone: Observable<boolean> = this.store.select(selectShowEventsInBrowserTimezone);
   showEventsInBrowserTimezone: boolean = false;
 
   areEventsFetched: Observable<boolean> = this.store.select(selectEventsFetched);
@@ -70,7 +71,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
       }),
     );
     this.subscriptions.add(
-      this.store.select(selectShowEventsInBrowserTimezone).subscribe((showEventsInBrowserTimezone) => {
+      this.$showEventsInBrowserTimezone.subscribe((showEventsInBrowserTimezone) => {
         this.showEventsInBrowserTimezone = showEventsInBrowserTimezone;
       }),
     );
